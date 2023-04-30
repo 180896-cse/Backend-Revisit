@@ -1,14 +1,14 @@
-const path = require("path");
-const DB = require ("../app");
+import path from "path";
 
 
 //importing the schema from data module
-const user = require ("../Model/userModel");
+import user from "../Model/userModel";
+
 
 
 //get request to get All contact
 const getAlluser = async (req, res) => {
-  const users = await user.find();
+  const users = await user.;
   res.status(200).json({ users });
    
 };

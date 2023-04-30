@@ -1,8 +1,14 @@
 // Ink this file we gone desgine the schema for contacts
-import mongooes from "mongoose";
+import {Model, Schema, model,} from "mongoose";
+
+//interface for schema
+interface IContact {
+    username: string,
+    password:string
+}
 
 
-const usersSchema = new mongooes.Schema({
+const usersSchema = new Schema<IContact>({
     username:{
         type: String,
         required:[true,"Please provide the username"]
@@ -12,6 +18,7 @@ const usersSchema = new mongooes.Schema({
         required:[true,"Please provide the password"]
     }
 });
-const user = mongooes.model("user", usersSchema);
+// 3. Create a Model.
+const User = model<IContact>("User",usersSchema);
 
-export {user};
+export default {User};
