@@ -1,5 +1,5 @@
 // Ink this file we gone desgine the schema for contacts
-import {Model, Schema, model,} from "mongoose";
+import mongoose, {Model, Schema, model,} from "mongoose";
 
 //interface for schema
 interface IContact {
@@ -19,6 +19,6 @@ const usersSchema = new Schema<IContact>({
     }
 });
 // 3. Create a Model.
-const User = model<IContact>("User",usersSchema);
+const user = mongoose.model<IContact>("user",usersSchema);
 
-export default {User};
+export default user;

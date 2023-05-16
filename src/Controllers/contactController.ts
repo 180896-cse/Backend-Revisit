@@ -1,4 +1,6 @@
 import path from "path";
+import { NextFunction, Request, Response } from 'express'
+
 
 
 //importing the schema from data module
@@ -7,14 +9,14 @@ import user from "../Model/userModel";
 
 
 //get request to get All contact
-const getAlluser = async (req, res) => {
-  const users = await user.;
+const getAlluser = async (req:Request, res:Response) => {
+  const users:Object =  await user.find();
   res.status(200).json({ users });
    
 };
 
 //get request to get paticular contact
-const getUser = async (req, res) => {
+const getUser = async (req:Request, res:Response) => {
   const paticularUser = await user.findById(req.params.id);
   if (!paticularUser) {
     res.status(404).send(`No user found at this id !!`);
@@ -25,7 +27,7 @@ const getUser = async (req, res) => {
 };
 
 //post reqeuest to post/create contact
-const createUser = async (req, res) => {
+const createUser = async (req:Request, res:Response) => {
   const { username, password } = req.body;
   const newUser = await user.create({
     username,
@@ -36,7 +38,7 @@ const createUser = async (req, res) => {
 };
 
 //patch request to put contact
-const updateUser = async (req, res) => {
+const updateUser = async (req:Request, res:Response) => {
     const id =  req.params.id;
     const updatedBody = req.body;
   const updatedUser = await user.findByIdAndUpdate(
@@ -48,14 +50,16 @@ const updateUser = async (req, res) => {
 };
 
 
+
+
 //delete request to delete contact
-const deleteUser = async (req, res) => {
+const deleteUser = async (req:Request, res:Response) => {
     const paticularUser = await user.findById(req.params.id);
     if (!paticularUser) {
       res.status(404).send(`No user found at this id !!`);
       // throw new error("no info found");
     }
-  await user.deleteOne(paticularUser);
+  await user.findByIdAndDelete(paticularUser);
   res.status(200).json({ paticularUser });
 };
 
@@ -63,28 +67,12 @@ const deleteUser = async (req, res) => {
 
 //handle bar files of Login homepage/form
 //if using templet engines "hbs" we have to use response.render();
-const loginpage = async (req, res) => {
-  await res.render(path.join(__dirname, "../views/Htmlfiles/home.hbs"));
-
-    //  const isUser = await user.find({ "id": "4" })
-    //  if(isUser==""){
-    //     res.send("no element found with this id!!");
-    //  }else{
-    //     res.status(200).json(isUser);
-    //     isUser.forEach((user)=>{
-    //         if(user.name == "shantanu"){
-    //    console.log(user.name);
-    // }
-    //    });
-    // }
+const loginpage = async (req:Request, res:Response) => {
+  await res.render(path.join(__dirname, "../views/pages/home.hbs"));
      
 };
 
-module.exports = {
-    getAlluser,
-  getUser,
-  updateUser,
-  createUser,
-  deleteUser,
-  loginpage,
-};
+
+
+export {getAlluser,getUser,updateUser,createUser,deleteUser,loginpage};
+

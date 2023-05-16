@@ -7,5 +7,8 @@ temp/
 # ignore Node modules Folder
 node_modules
 
-#  ignore All JSON file
+# ignore .env files
+
+*.env
+
 *.json

@@ -21,8 +21,8 @@ app.use(express.json());
 
 
 // middleware for making View folder static public for acessing the css and js files
-app.use(express.static(path.join(__dirname,"./views/Cssfiles")));
-app.use(express.static(path.join(__dirname,"./views/Jsfiles")));
+app.use(express.static(path.join(__dirname,"../public/assests/css")));
+app.use(express.static(path.join(__dirname,"../public/assests/js")));
 
 
 //middleware created an route for acessing the html page.
