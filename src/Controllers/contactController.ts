@@ -1,7 +1,7 @@
 import path from "path";
 import { NextFunction, Request, Response } from 'express'
 
-
+import { Get, Route } from "tsoa";
 
 //importing the schema from data module
 import user from "../Model/userModel";
@@ -9,6 +9,9 @@ import user from "../Model/userModel";
 
 
 //get request to get All contact
+
+ 
+
 const getAlluser = async (req:Request, res:Response) => {
   const users:Object =  await user.find();
   res.status(200).json({ users });

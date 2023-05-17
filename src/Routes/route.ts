@@ -6,11 +6,17 @@ import {getAlluser,getUser,createUser,updateUser,deleteUser,loginpage} from "../
 const routers:Router = express.Router();
 
 
+
+
+
+
 //defining routes
 routers.route("/").get(loginpage);
  
 // I can use multiple method if they can have same url and params
+ 
 routers.route("/api/user").get(getAlluser);
+
 routers.route("/api/user").post(createUser);
 
 
